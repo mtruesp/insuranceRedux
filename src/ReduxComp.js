@@ -88,11 +88,18 @@ const ReduxComp = () => {
 
     store.dispatch(createPolicy('Manuel', 100))
     store.dispatch(createPolicy('Andres', 200))
-
+    
     state = store.getState()
     debugger
-
     
+    store.dispatch(deletePolicy('Manuel'))
+    
+    state = store.getState()
+    debugger
+    store.dispatch(createClaim('Andres', 50))
+    
+    state = store.getState()
+    debugger
     return <div></div>
 }
 
