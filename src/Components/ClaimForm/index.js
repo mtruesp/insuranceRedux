@@ -1,12 +1,19 @@
 import React from 'react'
 import {Container, Row, Button, Form} from 'react-bootstrap'
+import {connect} from 'react-redux'
 
-const ClaimForm = () => {
+import {createClaim} from '../../Actions'
+
+const ClaimForm = (props) => {
+
+    const nameRef = React.createRef()
+    const amountRef = React.createRef()
 
     const handleCreateClaim = () => {
-        console.log('crear reclamo')
+        let name = nameRef.current.value
+        let amount = parseInt(amountRef.current.value)
+        props.createClaim(name, amount)
     }
-
 
     return (
         <Container>
@@ -15,9 +22,9 @@ const ClaimForm = () => {
             </Row>
             <Row>
                 <Form.Group>
-                    <Form.Control size="lg" type="text" placeholder="Nombre" />
+                    <Form.Control ref={nameRef} size="lg" type="text" placeholder="Nombre" />
                     <br />
-                    <Form.Control size="lg" type="number" placeholder="Monto" />
+                    <Form.Control ref={amountRef} size="lg" type="number" placeholder="Monto" />
                     <br />
                 </Form.Group>
             </Row>
@@ -31,4 +38,4 @@ const ClaimForm = () => {
     )
 }
 
-export default ClaimForm
+export default connect(null, {createClaim})(ClaimForm)

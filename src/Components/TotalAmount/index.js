@@ -1,17 +1,24 @@
 import React from 'react'
 import { Row, Container, Col } from 'react-bootstrap'
+import {connect} from 'react-redux'
 
-const TotalAmount = () => {
+const TotalAmount = (props) => {
 
     return(
         <Container>
             <Row>
                 <Col sm="4">
-                    Total: $
+                    Total: ${props.totalAmount}
                 </Col>
             </Row>
         </Container>
     )
 }
 
-export default TotalAmount
+const mapStateToProps = (state) => {
+    return {
+        totalAmount : state.totalAmount
+    }
+}
+
+export default connect(mapStateToProps)(TotalAmount)

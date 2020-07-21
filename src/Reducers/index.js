@@ -3,28 +3,29 @@ import { combineReducers } from "redux"
 //Reducers
 const policies = (listPolicies = [], action) => {
     let listPoliciesCopy = listPolicies
-    if(action.type == "CREATE_POLICY"){
-        listPoliciesCopy.push(action.payload.name)
-        return listPoliciesCopy
-    }
-    else if(action.type == "DELETE_POLICY"){
-        let newList = listPoliciesCopy.filter((name) => {
-            return name !== action.payload
-        })
-        return newList
-    }
-    else {
-        return listPoliciesCopy
+    switch(action.type){
+        case"CREATE_POLICY":
+            return [...listPolicies, action.payload.name]
+        case "DELETE_POLICY":
+            let newList = listPoliciesCopy.filter((name) => {
+                return name !== action.payload
+            })
+            return newList
+        default:
+            return listPoliciesCopy
     }
 }
 
 const bank = (totalAmount = 0, action) => {
+    let value = 0
+    if(action.payload && action.payload.amount)
+        value = parseFloat(action.payload.amount)
     switch(action.type){
         case "CREATE_POLICY":
-            let newAmount = totalAmount + action.payload.amount
+            let newAmount = totalAmount + value
             return newAmount
         case "CREATE_CLAIM":
-            return totalAmount - action.payload.amount
+            return totalAmount - value
         default:
             return totalAmount
     }

@@ -2,18 +2,22 @@ import React from 'react'
 import {Container, Row, Button, Form, Col} from 'react-bootstrap'
 import { connect } from 'react-redux'
 
-import {createPolicy} from '../../Actions'
+import {createPolicy, deletePolicy} from '../../Actions'
 
 const PolicyForm = (props) => {
 
+    const nameRef = React.createRef()
+    const amountRef = React.createRef()
+
     const handlerCreate = () => {
-        console.log('crear Poliza')
-        props.createPolicy('Manuel', 100)
-        console.log('props', props.policiesNames)
+        const name = nameRef.current.value
+        const amount = amountRef.current.value
+        props.createPolicy(name, amount) 
     }
 
     const handleDelete = () => {
-        console.log('Borrar poliza')
+        const name = nameRef.current.value
+        props.deletePolicy(name)
     }
 
     return (
@@ -23,9 +27,19 @@ const PolicyForm = (props) => {
             </Row>
             <Row>
                 <Form.Group>
-                    <Form.Control size="lg" type="text" placeholder="Nombre" />
+                    <Form.Control 
+                        ref={nameRef}
+                        size="lg" 
+                        type="text" 
+                        placeholder="Nombre"  
+                    />
                     <br />
-                    <Form.Control size="lg" type="number" placeholder="Monto" />
+                    <Form.Control 
+                        ref={amountRef}
+                        size="lg" 
+                        type="number" 
+                        placeholder="Monto" 
+                    />
                     <br />
                 </Form.Group>
             </Row>
@@ -48,8 +62,9 @@ const PolicyForm = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        policiesNames: state.listPolicies
+        policiesNames: state.listPolicies,
+        totalAmount: state.totalAmount
     }
 }
 
-export default connect(mapStateToProps, {createPolicy})(PolicyForm) 
+export default connect(mapStateToProps, {createPolicy, deletePolicy})(PolicyForm) 

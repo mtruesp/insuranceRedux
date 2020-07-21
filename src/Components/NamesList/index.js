@@ -1,17 +1,35 @@
 import React from 'react'
 import {Container, Row, Col, Button} from 'react-bootstrap'
+import {connect} from 'react-redux'
 
-const NamesList = () => {
+const NamesList = (props) => {
 
     return(
         <Container>
             <Row>
                 <Col>
-                    Nombres
+                    Nombres: 
+                </Col>
+                <Col>
+                    {
+                        props.names.map((name) => {
+                            return (
+                                <Row key={name}>
+                                    {name}
+                                </Row>
+                            )
+                        })
+                    }
                 </Col>
             </Row>
         </Container>
     )
 }
 
-export default NamesList
+const mapStateToProps = (state) => {
+    return {
+        names: state.listPolicies
+    }
+}
+
+export default connect(mapStateToProps)(NamesList)
