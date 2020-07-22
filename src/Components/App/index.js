@@ -8,6 +8,7 @@ import ClaimForm from '../ClaimForm'
 import NamesList from '../NamesList'
 import TotalAmount from '../TotalAmount'
 import ClaimList from '../ClaimList'
+import UserList from '../UserList'
 
 const App = () => {
     return(
@@ -20,6 +21,7 @@ const App = () => {
                     <Col>
                         <Route path="/" exact component={PolicyForm}></Route>
                         <Route path="/claim" component={ClaimForm}></Route>
+                        <Route path="/users" component={UserList}></Route>
                     </Col>
                     <Col>
                         <Row>

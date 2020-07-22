@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import {createPolicy, deletePolicy} from '../../Actions'
 
 const PolicyForm = (props) => {
+    console.log('Policy form', props)
 
     const nameRef = React.createRef()
     const amountRef = React.createRef()

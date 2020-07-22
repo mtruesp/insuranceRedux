@@ -20,6 +20,13 @@ const Menu = () => {
                         </Button>
                     </Link>
                 </Col>
+                <Col sm="2">
+                    <Link to="/users">
+                        <Button>
+                            Lista de usuarios
+                        </Button>
+                    </Link>
+                </Col>
             </Row>
         </Container>
     )

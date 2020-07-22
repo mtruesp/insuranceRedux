@@ -3,6 +3,7 @@ import { Row, Container, Col } from 'react-bootstrap'
 import {connect} from 'react-redux'
 
 const TotalAmount = (props) => {
+    console.log('total amount', props)
 
     return(
         <Container>

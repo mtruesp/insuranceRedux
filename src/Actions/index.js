@@ -1,3 +1,5 @@
+import Axios from "axios"
+
 //Action creator
 export const createPolicy = (name, amount) => {
     //Action
@@ -23,6 +25,23 @@ export const createClaim = (name, amount) => {
         payload: {
             name: name,
             amount: amount
+        }
+    }
+}
+
+export const getUsers = () => {
+    return async (dispatch, getState) => {
+        try{
+            const respose = await Axios.get('https://jsonplaceholder.typicode.com/users')
+            dispatch({
+                type: 'NEW_USER_LIST',
+                payload: respose.data
+            })
+        }
+        catch{
+            dispatch({
+                type: 'ERROR'
+            })
         }
     }
 }

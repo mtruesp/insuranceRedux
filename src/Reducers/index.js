@@ -40,6 +40,15 @@ const claimHistory = (listOfClaims = [], action) => {
     }
 }
 
+const userList = (list = [], action) => {
+    switch(action.type){
+        case "NEW_USER_LIST":
+            return action.payload
+        default:
+            return list
+    }
+}
+
 // const departments = combineReducers({
 //     listPolicies: policies,
 //     totalAmount: bank,
@@ -51,5 +60,6 @@ const claimHistory = (listOfClaims = [], action) => {
 export default combineReducers({
     listPolicies: policies,
     totalAmount: bank,
-    listOfClaims: claimHistory
+    listOfClaims: claimHistory,
+    userList: userList
 })
